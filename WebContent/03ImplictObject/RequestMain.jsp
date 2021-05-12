@@ -17,7 +17,7 @@
 	3.<form method='get'을 사용하는 방법
 	 -->
 	<h3>Get방식 전송</h3>
-	<a href="RequestInfo.jsp?paramNum=123&paramEng=Hello&pramHan=안녕">
+	<a href="RequestInfo.jsp?paramNum=123&paramEng=Hello&paramHan=안녕">
 	Get 방식</a>
 	
 	<h3>Post방식 전송</h3>
