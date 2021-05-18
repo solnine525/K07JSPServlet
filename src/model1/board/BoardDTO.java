@@ -1,4 +1,4 @@
-package model;
+package model1.board;
 
 public class BoardDTO {
 	//멤버변수
@@ -6,8 +6,10 @@ public class BoardDTO {
     private String title;
     private String content;
     private String id;
-    private String postdate;
+    private java.sql.Date postdate;
     private String visitcount;
+    //member테이블과 조인 후 회언이름을 출력해야 할 때 사용
+    private String name;
     //생성자 : 필요한 경우에만 생성한다.
     //setter/getter는 무조건 생성한다.
     
@@ -36,10 +38,10 @@ public class BoardDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPostdate() {
+	public java.sql.Date getPostdate() {
 		return postdate;
 	}
-	public void setPostdate(String postdate) {
+	public void setPostdate(java.sql.Date postdate) {
 		this.postdate = postdate;
 	}
 	public String getVisitcount() {
@@ -48,4 +50,11 @@ public class BoardDTO {
 	public void setVisitcount(String visitcount) {
 		this.visitcount = visitcount;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
