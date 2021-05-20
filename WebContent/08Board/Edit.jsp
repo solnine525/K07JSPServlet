@@ -6,6 +6,20 @@
 <%
 //파라미터 받기
 String num = request.getParameter("num");
+String searchField = request.getParameter("searchField");
+String searchWord = request.getParameter("searchWord");
+
+System.out.println(searchField + " / " + searchWord);
+
+
+String queryStr ="";
+if(searchWord!=null){ 	
+	//검색 파라미터 추가하기
+	queryStr ="searchField="+searchField+"&searchWord="+searchWord;
+}
+
+
+
 //DAO 객체 생성 후 게시물 조회
 BoardDAO dao = new BoardDAO(application);
 BoardDTO dto = dao.selectView(num);
@@ -75,7 +89,7 @@ dao.close();
 			<td colspan="2" align="center">
 				<button type="submit">작성완료</button>
 				<button type="reset">RESET</button>
-				<button type="button" onclick="location.href='ListSimple.jsp';">
+				<button type="button" onclick="location.href='List.jsp?<%=queryStr%>';">
 					리스트바로가기
 				</button>
 			</td>

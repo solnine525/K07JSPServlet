@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
+
 public class BoardDAO {
 	
 	//DAO의 기본 멤버변수
@@ -107,7 +108,7 @@ public class BoardDAO {
 		return totalCount;
 	}
 	
-	//목록에 출력할 게시물을 조회하기 위한 메소드
+	//목록에 출력할 게시물을 조회하기 위한 메소드(페이지 처리 없음)
 	public List<BoardDTO> selectList(Map<String,Object> map){
 		
 		//목록의 정렬순서를 보장하기 위해 List계열의 컬렉션을 사용한다.
@@ -151,6 +152,66 @@ public class BoardDAO {
 		}
 		return bbs;
 	}
+	
+	//게시판 목록 출력시 페이지 처리
+	public List<BoardDTO> selectListPage(Map<String,Object> map){
+		
+		List<BoardDTO> bbs = new Vector<BoardDTO>();
+		/*
+		목록의 페이지 처리를 위해 레코드의 구간을 between으로 정해 조회함.
+		1번 : board테이블의 게시물을 일련번호의 내림차순으로 정렬
+		2번 : 1번의 조회결과에 rownum(순차적인 가상번호)를 부여함
+		3번 : 2번의 조회결과를 between으로 구간을 정해 조회함.
+		※만약 게시판이 아닌 다른 테이블을 조회하고 싶다면 1번 쿼리문에서
+		테이블명만 변경하면 된다.
+		 */
+		String query = " "
+				+" SELECT * FROM ( "
+			    +"	SELECT Tb.*, ROWNUM rNum FROM ( "
+			    +"  	SELECT * FROM board ";
+		if(map.get("searchWord")!=null) {
+			query += " WHERE "+map.get("searchField")+ " "
+					+" LIKE '%"+ map.get("searchWord")+ "%' ";
+		}
+		query += " "
+				+ "		ORDER BY num DESC "
+				+ "		) Tb "
+				+ " ) "
+				+ " WHERE rNum BETWEEN ? AND ?";
+		System.out.println(query);
+		
+		try { 
+			psmt = con.prepareStatement(query);
+			//between 절의 start와 end값을 인파라미터 설정
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setId(rs.getString("id"));
+				dto.setVisitcount(rs.getString("visitcount"));
+				
+				bbs.add(dto);
+			}
+		}
+		catch(Exception e) {
+			System.out.println("게시물 조회중 예외발생");
+			e.printStackTrace();
+		}
+		return bbs;
+	
+	}
+		
+	
+	
+	
+	
+	
 	//게시판 글쓰기 처리
 	public int insertWrite(BoardDTO dto) {
 		int result=0;
@@ -245,5 +306,23 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	//게시물 삭제처리
+	public int deletePost(BoardDTO dto) {
+		int result = 0;
+		try {
+			String query = "DELETE FROM board WHERE num=?";
+			psmt= con.prepareStatement(query);
+			psmt.setString(1, dto.getNum());
+			result = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("게시물 삭제중 예외발생");
+			e.printStackTrace();
+		}	
+		return result;
+	}
+	
+	
+	
 	
 }
