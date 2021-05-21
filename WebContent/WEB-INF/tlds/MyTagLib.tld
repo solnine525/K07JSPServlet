@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+  
+  <!-- 
+  TLD파일  Tag Library Descriptor의 약자로 WEB-INF폴더 하위에
+  	생성한다. 웹어플리케이션 실행시 컨테이너가 해당 파일을
+  	찾아 사용하게 된다. EL에서 호출할 메소드를 등록하는 용도로 사용된다.
+   -->
+   <!-- 해당 TLD파일에 대한 간단한 설명 -->
+  <description>My Tag Library</description>
+	<!--  해당 파일의버전 -->
+	<tlib-version>1.1</tlib-version>
+	<!-- 접두어 : 설정후 EL에서 메소드 호출시 사용할 접두어를 기술함. -->
+	<short-name>my</short-name>
+	
+	<!-- 
+	EL에서 호출할 메소드를 등록한다.
+	name : EL에서 사용할 메소드명
+	function-class : 패키지를 포함한 클래스의 풀 경로
+	function-signature : 호출할 메소드의 원형을 기술함. 리턴타임과
+		매개변수는 해당 클래스의 패키지를 포함한 풀 경로를 사용해야한다.
+		단, 기본자료형인 경우 자료형만 기술하면 된다.
+	 -->
+	<function>
+		<name>isNumber</name>
+		<function-class>eltag.MyTagLib</function-class>
+		<function-signature>boolean isNumber(java.lang.String)</function-signature>
+	</function>
+</taglib>

@@ -81,6 +81,20 @@
    	파일명을 지정한다. 만약 아래 목록에 있는 파일이 없다면
    	404에러가 발생하게 된다.
     -->
+    
+    <!-- 
+    TLD파일의 경로(위치)등록
+    : 파일의 위치와 JSP에서 지시어 등록시 사용할 uri를 지정한다.
+     -->
+    <jsp-config>
+    	<taglib>
+    		<taglib-uri>myTagLibTld</taglib-uri>
+    		<taglib-location>/WEB-INF/tlds/MyTagLib.tld</taglib-location>
+    	</taglib>
+    </jsp-config>
+    
+    
+    
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
