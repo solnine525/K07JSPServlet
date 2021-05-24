@@ -1,5 +1,7 @@
 package eltag;
 
+import model.MemberDAO;
+
 public class MyTagLib {
 	/*
 	매개변수로 문자열을 받은 후 문자배열로 만들어
@@ -18,5 +20,18 @@ public class MyTagLib {
 		}
 		//전체가 숫자이면 true를 반환한다.
 		return true;
+	}
+	/*
+	회원 로그인을 위한 아이디/패스워드와 DB 연결을 위한 드라이버명, URL을
+	인자로 전달받아 회원여부를 판단하여 boolean을 반환해주는 메소드.
+	 */
+	public static boolean memberLogin(String id, String pw, String drv, String url) {
+		//DB연결을 위한 객체생성
+		MemberDAO dao = new MemberDAO(drv, url);
+		//아이디/패스워드를 통한 회원인증
+		boolean isBool = dao.isMember(id, pw);
+		//결과 반환
+		return isBool;
+		
 	}
 }
