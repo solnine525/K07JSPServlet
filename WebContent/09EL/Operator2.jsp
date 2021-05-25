@@ -14,7 +14,7 @@ pageContext.setAttribute("sizeZero",new ArrayList()); //List컬렉션
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Operator2.jsp</title>
 </head>
 <body>
 	<h3>empty연산자</h3>

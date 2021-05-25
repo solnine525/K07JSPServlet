@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>05forEach.jsp</title>
 </head>
 <body>
 	<h2>일반 for문 형태의 forEach 태그</h2>

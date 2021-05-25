@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>InnerForward.jsp</title>
 </head>
 <body>
 	<h2>forward된 페이지 입니다.</h2>

@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyTagLib.jsp</title>
 </head>
 <body>
 	<h3>Java코드로 메소드 호출하기</h3>

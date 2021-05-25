@@ -11,7 +11,7 @@ application.setAttribute("scopeVar", "어플리케이션영역");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>InnerObject.jsp</title>
 </head>
 <body>
 	<!-- 

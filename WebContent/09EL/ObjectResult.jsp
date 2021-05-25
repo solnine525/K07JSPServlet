@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ObjectResult.jsp</title>
 </head>
 <body>
 	<h2>EL의 param 내장객체로 파라미터 읽기</h2>

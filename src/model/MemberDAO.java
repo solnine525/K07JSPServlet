@@ -172,6 +172,39 @@ public class MemberDAO {
 		}
 		
 		return uMap;
+	}
+	
+	
+	public Map<String, String> getMemberMap(String uid) {
+		
+		Map<String, String> uMap = new HashMap<String, String>();
+		
+		String query = "SELECT id, pass, name FROM "
+				+ " member WHERE id=?";
+		try {
+			//prepared 객체 생성
+			psmt = con.prepareStatement(query);
+			//인파라미터 설정
+			psmt.setString(1, uid);
+			//쿼리문 실행
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet 객체를 통해 결과값이 있는지 확인
+			if(rs.next()) {
+				//결과가 있다면 DTO객체에 회원정보 저장
+				uMap.put("id",rs.getString(1)); //아이디
+				uMap.put("pass",rs.getString(2)); //패스워드
+				uMap.put("name", rs.getString(3)); //이름
+			}
+			else {
+				System.out.println("결과셋이 없습니다.");
+			}
+		}
+		catch(Exception e) {
+			System.out.println("getMemberMap오류");
+			e.printStackTrace();
+		}
+		
+		return uMap;
 	}	
 
 }

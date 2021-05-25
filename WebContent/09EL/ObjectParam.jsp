@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ObjectParam.jsp</title>
 </head>
 <body>
 	<h2>객체를 파라미터로 전달하기</h2>

@@ -12,7 +12,7 @@ pageContext.setAttribute("num4",6);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Operator1.jsp</title>
 </head>
 <body>
 	<h3>변수 선언 및 할당</h3>
