@@ -82,6 +82,32 @@
    	404에러가 발생하게 된다.
     -->
     
+    <!--  
+    	요청명 매핑 시 하위 엘리먼트의 순서가 바뀌면 에러가
+    	발생하므로 주의해야 한다. 또한 요청명은 항상 /로 시작하므로
+    	누락시 서버가 구동되지 않으니 주의해야한다.
+    -->
+    <!-- web.xml에서 요청명 매핑후 JSP에서 출력하기 -->
+    <servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>HelloServlet</servlet-name>
+    	<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 요청을 받은 후 Servlet에서 직접 출력하기 -->
+    <servlet>
+    	<servlet-name>DirectServletPrint</servlet-name>
+    	<servlet-class>servlet.DirectServletPrint</servlet-class>	
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>DirectServletPrint</servlet-name>
+    	<url-pattern>/13Servlet/DirectServletPrint.do</url-pattern>
+    </servlet-mapping>
+    
+    
     <!-- 
     TLD파일의 경로(위치)등록
     : 파일의 위치와 JSP에서 지시어 등록시 사용할 uri를 지정한다.

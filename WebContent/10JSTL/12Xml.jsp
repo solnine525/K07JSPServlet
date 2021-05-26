@@ -101,24 +101,17 @@
 			<td><x:out select="$item/author"/></td>
 			<td><x:out select="$item/price"/></td>
 			<td>
-				<x:if select="$item/name='총,균,쇠'" var="result">
-					구매함
-				</x:if>
+				<x:choose>
+					<x:when select="$item/name='총,균,쇠'">
+						구매함
+					</x:when>
+					<x:otherwise>이건 됨?
+					</x:otherwise>
+				</x:choose>
 			</td>
 		</tr>
 		</x:forEach>
 	</table>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </body>
 </html>

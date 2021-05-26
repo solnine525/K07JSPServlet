@@ -71,15 +71,7 @@
 	 String commaMoney = nf.format(money);
 	 out.println(commaMoney);
 	 %>
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	
 	 
 </body>
 </html>

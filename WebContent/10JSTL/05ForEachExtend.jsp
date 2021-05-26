@@ -114,17 +114,17 @@
 		<li>
 			아이디 : ${maps.first.id },
 			비밀번호 : ${maps.first.pass },
-			이름 : ${maps.first.name },
+			이름 : ${maps.first.name }
 		</li>
 		<li>
 			아이디 : ${maps.second.id },
 			비밀번호 : ${maps.second.pass },
-			이름 : ${maps.second.name },
+			이름 : ${maps.second.name }
 		</li>
 		<li>
 			아이디 : ${maps.third.id },
 			비밀번호 : ${maps.third.pass },
-			이름 : ${maps.third.name },
+			이름 : ${maps.third.name }
 		</li>
 	</ul>
 	

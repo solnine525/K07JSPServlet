@@ -119,9 +119,6 @@
 		<input type="submit" value="로그인" />
 	</form>	
 		
-		
-		
-		
 	
 	<c:if test="${not empty param.user }">
 		<c:if test="${param.user eq 'kosmo' and param.pass=='1234'}" var="loginResult">
@@ -141,8 +138,5 @@
 		</c:if>
 	</c:if>	
 		
-
-
-
 </body>
 </html>
