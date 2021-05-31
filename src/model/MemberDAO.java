@@ -206,5 +206,15 @@ public class MemberDAO {
 		
 		return uMap;
 	}	
-
+	
+	public void close() {
+		try {
+			if(rs!=null) rs.close();
+			if(psmt!=null) psmt.close();
+			if(con!=null) con.close();
+		}
+		catch(Exception e) {
+			System.out.println("Oracle 자원반납시 예외발생");
+		}
+	}
 }

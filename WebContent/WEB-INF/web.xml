@@ -3,17 +3,16 @@
   <display-name>K07JSPServlet</display-name>
   <!-- 
   	배포서술자(Deployment descriptor) : 해당 웹 애플리케이션을
-  		개발하거나 배포할 때 여러가지 설정값을 저장하는 용도로
-  		사용하는 xml 파일
-   -->
+  		개발하거나 배포할때 여러가지 설정값을 저장하는 용도로
+  		사용하는 xml파일
+  -->
    
-   <!-- 
-   	컨텍스트 초기화 파라미터
-   		: 해당 웹 애플리케이션 전체에서 접근가능한 영역으로
-   		주로 application 내장객체를 통해 접근하여 값을 읽어오게
-   		된다. 일종의 상수와 같은 역할을 한다.
-   -->
-   
+  <!--  
+  	컨텍스트 초기화 파라미터
+  		:  해당 웹 애플리케이션 전체에서 접근가능한 영역으로
+  		주로 application 내장객체를 통해 접근하여 값을 읽어오게
+  		된다. 일종의 상수와 같은 역할을 한다. 
+  -->
   <context-param>
   	<param-name>JDBCDriver</param-name>
   	<param-value>oracle.jdbc.OracleDriver</param-value>
@@ -31,39 +30,41 @@
   	<param-value>1234</param-value>
   </context-param>
   
-  <!--
-  	에러가 발생했을 때 특정 페이지에서 예외처리를 하기 위한 설정.
-  	하지만 개발시에는 에러를 즉시 확인할 수 없으므로, 개발이
-  	완료된 후 배포할 때만 사용하는 것이 좋다. 
-   -->
- <!--  <error-page>
-  	<error-code>404</error-code>
-  	<location>/03ImplicitObject/Exception.jsp</location>
-  </error-page>
-  <error-page>
-  	<error-code>405</error-code>
-  	<location>/03ImplicitObject/Exception.jsp</location>
-  </error-page>
-  <error-page>
-  	<error-code>500</error-code>
-  	<location>/03ImplicitObject/Exception.jsp</location>
-  </error-page> -->
+
+<!-- 
+	에러가 발생했을때 특정 페이지에서 예외처리를 하기위한 설정.
+	하지만 개발시에는 에러를 즉시 확인할 수 없으므로, 개발이 
+	완료된 후 배포할때만 사용하는것이 좋다. 
+-->  
+<!--   <error-page> -->
+<!--   	<error-code>404</error-code> -->
+<!--   	<location>/03ImplicitObject/Exception.jsp</location> -->
+<!--   </error-page> -->
+<!--   <error-page> -->
+<!--   	<error-code>405</error-code> -->
+<!--   	<location>/03ImplicitObject/Exception.jsp</location> -->
+<!--   </error-page> -->
+<!--   <error-page> -->
+<!--   	<error-code>500</error-code> -->
+<!--   	<location>/03ImplicitObject/Exception.jsp</location> -->
+<!--   </error-page> -->
   
   
-  <!-- 
-  	세션 유지시간 설정하기 : web.xml에서는 '분'단위로 설정한다.
+  <!--  
+  	세션 유지시간 설정하기 : web.xml에서는 '분' 단위로 설정한다.
   -->
-  
   <session-config>
   	<session-timeout>60</session-timeout>
   </session-config>
   
+  
+  
   <!-- 한글깨짐에 대한 필터설정 -->
-  <!--
-  	POST형식으로 폼값이 전송될 때 한글이 개지는 것을 방지하기 위해
+  <!--  
+  	POST형식으로 폼값이 전송될때 한글이 깨지는 것을 방지하기 위해 
   	request.setCharEncoding()을 주로 사용하는데, 이 설정을 한번에
-  	처라하기 위해 필터를 설정한다. 
-   -->
+  	처리하기 위해 필터 설정을 한다. 
+  -->
   <filter>
   	<filter-name>SetCharEncoding</filter-name>
   	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
@@ -76,52 +77,97 @@
   	<filter-name>SetCharEncoding</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
-   <!-- 
-   	웹 애플리케이션 자체를 실행했을 때 제일 먼저 실행될
-   	파일명을 지정한다. 만약 아래 목록에 있는 파일이 없다면
-   	404에러가 발생하게 된다.
-    -->
-    
-    <!--  
-    	요청명 매핑 시 하위 엘리먼트의 순서가 바뀌면 에러가
-    	발생하므로 주의해야 한다. 또한 요청명은 항상 /로 시작하므로
-    	누락시 서버가 구동되지 않으니 주의해야한다.
-    -->
-    <!-- web.xml에서 요청명 매핑후 JSP에서 출력하기 -->
-    <servlet>
-		<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>servlet.HelloServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>HelloServlet</servlet-name>
-    	<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 요청을 받은 후 Servlet에서 직접 출력하기 -->
-    <servlet>
-    	<servlet-name>DirectServletPrint</servlet-name>
-    	<servlet-class>servlet.DirectServletPrint</servlet-class>	
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>DirectServletPrint</servlet-name>
-    	<url-pattern>/13Servlet/DirectServletPrint.do</url-pattern>
-    </servlet-mapping>
-    
-    
-    <!-- 
-    TLD파일의 경로(위치)등록
-    : 파일의 위치와 JSP에서 지시어 등록시 사용할 uri를 지정한다.
-     -->
-    <jsp-config>
-    	<taglib>
-    		<taglib-uri>myTagLibTld</taglib-uri>
-    		<taglib-location>/WEB-INF/tlds/MyTagLib.tld</taglib-location>
-    	</taglib>
-    </jsp-config>
-    
-    
-    
   
+  
+  <!--  
+  TLD파일의 경로(위치)등록
+  : 파일의 위치와 JSP에서 지시어 등록시 사용할 uri를 지정한다. 
+  -->
+  <jsp-config>
+  	<taglib>
+  		<taglib-uri>myTagLibTld</taglib-uri>
+  		<taglib-location>/WEB-INF/tlds/MyTagLib.tld</taglib-location>
+  	</taglib>
+  </jsp-config>
+  
+  
+  <!--  
+  	요청명 매핑시 하위 엘리먼트의 순서가 바뀌면 에러가 
+  	발생하므로 주의해야 한다. 또한 요청명은 항상 /로 
+  	시작하므로 누락시 서버가 구동되지 않으니 주의해야 한다. 
+  -->
+  <!-- web.xml에서 요청명 매핑후 JSP에서 출력하기 -->
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>servlet.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/13Servlet/HelloServlet.do</url-pattern>
+  </servlet-mapping>
+  <!-- 요청을 받은 후 서블릿에서 직접 출력하기 -->
+  <servlet>
+    <servlet-name>DirectServletPrint</servlet-name>
+    <servlet-class>servlet.DirectServletPrint</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DirectServletPrint</servlet-name>
+    <url-pattern>/13Servlet/DirectServletPrint.do</url-pattern>	
+  </servlet-mapping>
+  
+  <!-- MVC 패턴으로 회원인증하기 -->
+  <servlet>
+    <servlet-name>MemberAuth</servlet-name>
+    <servlet-class>servlet.MemberAuth</servlet-class>
+    <!-- 서블릿 초기화 파라미터 : 해당 서블릿에서만 사용할 수 있음. -->
+    <init-param>
+      <param-name>admin_id</param-name>
+      <param-value>nakja</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberAuth</servlet-name>
+    <url-pattern>/13Servlet/MemberAuth.mvc</url-pattern>	
+  </servlet-mapping>
+   
+  <!-- 모델2 방식의 파일첨부형 게시판 만들기 -->
+  <!-- 목록 매핑 -->
+  <servlet>
+    <servlet-name>MVCBoardList</servlet-name>
+    <servlet-class>model2.mvcboard.ListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVCBoardList</servlet-name>
+    <url-pattern>/mvcboard/list.do</url-pattern>
+  </servlet-mapping>
+  <!-- 글쓰기 매핑 -->
+  <servlet>
+    <servlet-name>MVCBoardWrite</servlet-name>
+    <servlet-class>model2.mvcboard.WriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVCBoardWrite</servlet-name>
+    <url-pattern>/mvcboard/write.do</url-pattern>
+  </servlet-mapping> 
+  <!-- 내용 보기 매핑 없음-->
+  <!-- 글 수정하기 매핑 없음 -->
+  <!-- 글 삭제하기 매핑 없음 -->
+  <!-- 답변글 쓰기 매핑 없음-->
+  
+  <!-- 파일 업로드 최대 용량 : 1MB -->
+  <context-param>
+    <param-name>maxPostSize</param-name>
+    <param-value>1024000</param-value>
+  </context-param>  
+  
+  
+  
+  
+  <!--  
+  	웹 애플리케이션 자체를 실행했을때 제일 먼저 실행될 
+  	파일명을 지정한다. 만약 아래 목록에 있는 파일이 없다면
+  	404에러가 발생하게된다. 
+  -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

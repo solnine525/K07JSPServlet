@@ -6,9 +6,9 @@ package common;
  */
 public interface BoardConfig {
 	//게시판 목록에서 한 페이지에 출력할 게시물의 갯수
-	int PAGE_PER_SIZE = 5;
+	int PAGE_PER_SIZE = 2;
 	
 	//한 블럭당 출력할 페이지번호의 갯수
-	int PAGE_PER_BLOCK = 5;
+	int PAGE_PER_BLOCK = 2;
 	
 }
